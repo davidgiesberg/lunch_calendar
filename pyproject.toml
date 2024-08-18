@@ -5,9 +5,7 @@ description = "Add your description here"
 authors = [
     { name = "David Giesberg", email = "git@davidgiesberg.net" }
 ]
-dependencies = [
-    "fastapi==0.112.1",
-]
+dependencies = []
 readme = "README.md"
 requires-python = ">= 3.8"
 
@@ -18,7 +16,6 @@ build-backend = "hatchling.build"
 [tool.rye]
 managed = true
 dev-dependencies = [
-    "fastapi[standard]>=0.112.1",
     "ruff>=0.6.1",
     "pre-commit>=3.8.0",
 ]
