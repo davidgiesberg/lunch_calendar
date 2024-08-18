@@ -5,7 +5,9 @@ description = "Add your description here"
 authors = [
     { name = "David Giesberg", email = "git@davidgiesberg.net" }
 ]
-dependencies = []
+dependencies = [
+    "requests>=2.32.3",
+]
 readme = "README.md"
 requires-python = ">= 3.8"
 
@@ -18,6 +20,8 @@ managed = true
 dev-dependencies = [
     "ruff>=0.6.1",
     "pre-commit>=3.8.0",
+    "boto3>=1.35.0",
+    "rich>=13.7.1",
 ]
 
 [tool.hatch.metadata]

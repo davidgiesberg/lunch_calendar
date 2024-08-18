@@ -1,3 +1,3 @@
 # lunch-calendar
 
-    rye run fastapi dev
+    rye run python main.py
