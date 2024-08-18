@@ -1,0 +1,22 @@
+name: Build & Deploy
+on:
+  push:
+    branches:
+      - main
+jobs:
+  Package:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+      - name: Build Package
+        run: |
+          mkdir package
+          pip install -r requirements.lock --target ./package
+          cd package && zip -r ../deployment_package.zip .
+          cd .. && zip deployment_package.zip main.py
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: deployment_package
+          path: deployment_package.zip
