@@ -11,7 +11,7 @@ def is_aws_env():
     )
 
 
-def lambda_handler(event: dict = {}, context=None):
+def handler(event: dict = {}, context=None):
     logger.info("It works!")
 
 
@@ -24,4 +24,4 @@ if not is_aws_env():
     )
 
     logger = logging.getLogger("rich")
-    lambda_handler({}, {})
+    handler({}, {})

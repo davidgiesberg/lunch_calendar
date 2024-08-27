@@ -1,10 +1,7 @@
 name: Build & Deploy
-on:
-  push:
-    branches:
-      - main
+on: [push]
 jobs:
-  Package:
+  package:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -13,10 +10,19 @@ jobs:
         run: |
           mkdir package
           pip install -r requirements.lock --target ./package
-          cd package && zip -r ../deployment_package.zip .
-          cd .. && zip deployment_package.zip main.py
-      - name: Upload Artifact
-        uses: actions/upload-artifact@v4
+          cd package && zip -r ../lunch_calendar.zip .
+          cd .. && zip lunch_calendar.zip main.py
+      # - name: Upload Artifact
+      #   uses: actions/upload-artifact@v4
+      #   with:
+      #     name: lunch_calendar
+      #     path: lunch_calendar.zip
+      - name: terraform plan
+        uses: dflook/terraform-plan@v1
         with:
-          name: deployment_package
-          path: deployment_package.zip
+          path: deploy
+      - name: terraform apply
+        if: github.ref == 'refs/heads/main'
+        uses: dflook/terraform-apply@v1
+        with:
+          path: deploy
